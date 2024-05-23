@@ -21,8 +21,20 @@ importers:
         specifier: latest
         version: 1.13.3
 
-  apps/gavel-frontend:
+  apps/backend:
     dependencies:
+      '@trpc/client':
+        specifier: 11.0.0-rc.374
+        version: 11.0.0-rc.374(@trpc/server@11.0.0-rc.374)
+      '@trpc/server':
+        specifier: 11.0.0-rc.374
+        version: 11.0.0-rc.374
+
+  apps/client:
+    dependencies:
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       next:
         specifier: 14.2.3
         version: 14.2.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -33,6 +45,12 @@ importers:
         specifier: ^18
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@types/node':
         specifier: ^20
         version: 20.11.24
@@ -68,7 +86,7 @@ importers:
         version: 7.1.0(eslint@8.57.0)(typescript@5.3.3)
       '@vercel/style-guide':
         specifier: ^5.2.0
-        version: 5.2.0(@next/eslint-plugin-next@14.1.1)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.3.3)
+        version: 5.2.0(@next/eslint-plugin-next@14.2.3)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.3.3)
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.0)
@@ -299,9 +317,6 @@ packages:
   '@next/env@14.2.3':
     resolution: {integrity: sha512-W7fd7IbkfmeeY2gXrzJYDx8D2lWKbVoTIj1o1ScPHNzvp30s1AuoEFSdr39bC5sjxJaxTtq3OTCZboNp0lNWHA==}
 
-  '@next/eslint-plugin-next@14.1.1':
-    resolution: {integrity: sha512-NP1WoGFnFLpqqCWgGFjnn/sTwUExdPyjeFKRdQP1X/bL/tjAQ/TXDmYqw6vzGaP5NaZ2u6xzg+N/0nd7fOPOGQ==}
-
   '@next/eslint-plugin-next@14.2.3':
     resolution: {integrity: sha512-L3oDricIIjgj1AVnRdRor21gI7mShlSwU/1ZGHmqM3LzHhXXhdkrfeNY5zif25Bi5Dd7fiJHsbhoZCHfXYvlAw==}
 
@@ -393,6 +408,14 @@ packages:
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
+
+  '@trpc/client@11.0.0-rc.374':
+    resolution: {integrity: sha512-Ha1GaTT9FCq9BRPQPa+KKRTXSDRwvjHpsoYVl683vNoXnJRtTycMsPdydr/zdL10vuUHjutpLMZNycSRQ9yN0g==}
+    peerDependencies:
+      '@trpc/server': 11.0.0-rc.374+5027209bc
+
+  '@trpc/server@11.0.0-rc.374':
+    resolution: {integrity: sha512-7r76KJwbSV5mffEYQMGBIAVrrJdPot0JzYQD9ZvcInO8q9sn+uVVZQ8XCAq93zXDSodvzGBJhRu3Kn1qXPw5Xg==}
 
   '@tsconfig/node10@1.0.9':
     resolution: {integrity: sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA==}
@@ -2977,11 +3000,6 @@ snapshots:
 
   '@next/env@14.2.3': {}
 
-  '@next/eslint-plugin-next@14.1.1':
-    dependencies:
-      glob: 10.3.10
-    optional: true
-
   '@next/eslint-plugin-next@14.2.3':
     dependencies:
       glob: 10.3.10
@@ -3051,6 +3069,12 @@ snapshots:
       tslib: 2.6.2
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
+
+  '@trpc/client@11.0.0-rc.374(@trpc/server@11.0.0-rc.374)':
+    dependencies:
+      '@trpc/server': 11.0.0-rc.374
+
+  '@trpc/server@11.0.0-rc.374': {}
 
   '@tsconfig/node10@1.0.9': {}
 
@@ -3361,7 +3385,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vercel/style-guide@5.2.0(@next/eslint-plugin-next@14.1.1)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.3.3)':
+  '@vercel/style-guide@5.2.0(@next/eslint-plugin-next@14.2.3)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.3.3)':
     dependencies:
       '@babel/core': 7.23.3
       '@babel/eslint-parser': 7.23.3(@babel/core@7.23.3)(eslint@8.57.0)
@@ -3383,7 +3407,7 @@ snapshots:
       eslint-plugin-unicorn: 48.0.1(eslint@8.57.0)
       prettier-plugin-packagejson: 2.4.6(prettier@3.2.5)
     optionalDependencies:
-      '@next/eslint-plugin-next': 14.1.1
+      '@next/eslint-plugin-next': 14.2.3
       eslint: 8.57.0
       prettier: 3.2.5
       typescript: 5.3.3
